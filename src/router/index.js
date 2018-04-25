@@ -1,15 +1,39 @@
 import Vue from 'vue';
-import Router from 'vue-router';
-import HelloWorld from '@/components/HelloWorld';
+import VueRouter from 'vue-router';
 
-Vue.use(Router);
+const routeOptions = [
+  {
+    path: '/',
+    name: 'Landing',
+    component: 'Landing'
+  },
+  {
+    path: '/home',
+    name: 'Home',
+    component: 'Home'
+  },
+  {
+    path: '/sign-in',
+    name: 'SignIn',
+    component: 'Signin'
+  },
+  {
+    path: '/sign-up',
+    name: 'SignUp',
+    component: 'Signup'
+  }
+];
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld,
-    },
-  ],
-});
+const routes = routeOptions.map( route => {
+  return {
+    ...route,
+    component: () => import(`@/components/${route.component}.vue`)
+  }
+})
+
+Vue.use(VueRouter);
+
+export default new VueRouter({
+  mode: 'history',
+  routes
+})
