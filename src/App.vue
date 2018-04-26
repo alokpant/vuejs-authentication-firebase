@@ -12,6 +12,14 @@
             {{item.title}}
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile @click='userSignOut'>
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            Sign Out
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar app>
@@ -32,6 +40,10 @@
                :to='item.path'>
           <v-icon left dark>{{item.icon}}</v-icon>
           {{item.title}}
+        </v-btn>
+        <v-btn flat @click='userSignOut'>
+          <v-icon left dark>exit_to_app</v-icon>
+          Sign Out
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -59,6 +71,11 @@ export default {
   computed: {
     appTitle() {
       return this.$store.state.appTitle;
+    },
+  },
+  methods: {
+    userSignOut() {
+      this.$store.dispatch('userSignOut');
     },
   },
 };
