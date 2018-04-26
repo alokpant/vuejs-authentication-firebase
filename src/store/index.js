@@ -23,7 +23,12 @@ export const store = new Vuex.Store({
       state.loading = payload;
     },
   },
-  getters: {},
+  getters: {
+    isAuthenticated(state) {
+      return state.user !== null &&
+        state.user !== undefined;
+    },
+  },
   actions: {
     userSignUp({ commit }, payload) {
       commit('setLoading', true);

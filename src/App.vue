@@ -2,7 +2,7 @@
   <v-app>
     <v-navigation-drawer v-model="sidebar" app>
       <v-list>
-        <v-list-tile v-for='item in menuItems'
+        <v-list-tile v-for='item in menuItems()'
                      :key='item.title'
                      :to='item.path'>
           <v-list-tile-action>
@@ -12,7 +12,7 @@
             {{item.title}}
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile @click='userSignOut'>
+        <v-list-tile @click='userSignOut' v-if='isAuthenticated'>
           <v-list-tile-action>
             <v-icon>exit_to_app</v-icon>
           </v-list-tile-action>
@@ -35,13 +35,13 @@
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-xs-only">
         <v-btn flat
-               v-for='item in menuItems'
+               v-for='item in menuItems()'
                :key='item.title'
                :to='item.path'>
           <v-icon left dark>{{item.icon}}</v-icon>
           {{item.title}}
         </v-btn>
-        <v-btn flat @click='userSignOut'>
+        <v-btn flat @click='userSignOut' v-if='!isAuthenticated'>
           <v-icon left dark>exit_to_app</v-icon>
           Sign Out
         </v-btn>
@@ -61,11 +61,6 @@ export default {
   data() {
     return {
       sidebar: false,
-      menuItems: [
-        { title: 'Home', path: '/home', icon: 'home' },
-        { title: 'Sign Up', path: '/sign-up', icon: 'face' },
-        { title: 'Sign In', path: '/sign-in', icon: 'lock_open' },
-      ],
     };
   },
   computed: {
@@ -76,6 +71,21 @@ export default {
   methods: {
     userSignOut() {
       this.$store.dispatch('userSignOut');
+    },
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    },
+    menuItems() {
+      if (this.isAuthenticated()) {
+        return [
+          { title: 'Home', path: '/home', icon: 'home' }
+        ]
+      } else {
+        return [
+          { title: 'Sign Up', path: '/sign-up', icon: 'face' },
+          { title: 'Sign In', path: '/sign-in', icon: 'lock_open' },
+        ]
+      }
     },
   },
 };

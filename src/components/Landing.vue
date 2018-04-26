@@ -12,7 +12,7 @@
         </blockquote>
       </v-flex>
 
-      <v-flex xs12 sm6 offset-sm-3 mt-5 class='text-xs-center'>
+      <v-flex xs12 sm6 offset-sm-3 mt-5 class='text-xs-center' v-if='!isAuthenticated()'>
         <v-btn color='primary' to='/sign-up'>Sign Up</v-btn>
         <v-btn to='/sign-in'>Sign In</v-btn>
       </v-flex>
@@ -21,5 +21,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    isAuthenticated() {
+      return this.$store.getters.isAuthenticated;
+    },
+  }
+};
 </script>
