@@ -8,6 +8,9 @@ yarn-error.log*
 /test/e2e/reports/
 selenium-debug.log
 
+# Don't include firebase authentication details
+/src/firebase_auth.js
+
 # Editor directories and files
 .idea
 .vscode
