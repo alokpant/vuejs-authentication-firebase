@@ -28,9 +28,9 @@ export const store = new Vuex.Store({
     userSignUp({ commit }, payload) {
       commit('setLoading', true);
       firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
-      .then( (firebaseUser) => {
+      .then((firebaseUser) => {
         commit('setUser', {
-          email: firebaseUser.email
+          email: firebaseUser.email,
         });
         commit('setError', null);
         commit('setLoading', false);
@@ -46,7 +46,7 @@ export const store = new Vuex.Store({
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
       .then((firebaseUser) => {
         commit('setUser', {
-          email: firebaseUser.email
+          email: firebaseUser.email,
         });
         commit('setError', null);
         commit('setLoading', false);
@@ -57,10 +57,10 @@ export const store = new Vuex.Store({
         commit('setLoading', false);
       });
     },
-    autoSignIn({commit}, payload) {
+    autoSignIn({ commit }, payload) {
       commit('setUser', {
-        email: payload.email
+        email: payload.email,
       });
-    }
+    },
   },
 });

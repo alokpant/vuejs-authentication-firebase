@@ -42,7 +42,7 @@
 
 <script>
   export default {
-    data () {
+    data() {
       return {
         email: '',
         password: '',
@@ -50,7 +50,7 @@
       };
     },
     methods: {
-      userSignIn () {
+      userSignIn() {
         this.$store.dispatch('userSignIn', {
           email: this.email,
           password: this.password,
@@ -58,18 +58,18 @@
       },
     },
     computed: {
-      error () {
+      error() {
         return this.$store.state.error;
       },
-      loading () {
+      loading() {
         return this.$store.state.loading;
       },
     },
     watch: {
-      error (value) {
+      error(value) {
         if (value) this.alert = true;
       },
-      alert (value) {
+      alert(value) {
         if (!value) {
           this.$store.commit('setError', null);
         }

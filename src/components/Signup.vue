@@ -61,17 +61,17 @@
         password: '',
         passwordConfirm: '',
         alert: false,
-        formValid: false
-      }
+        formValid: false,
+      };
     },
     methods: {
       userSignUp() {
         if (!this.comparePasswords) return;
         this.$store.dispatch('userSignUp', {
-          'email': this.email,
-          'password': this.password,
+          email: this.email,
+          password: this.password,
         });
-      }
+      },
     },
     computed: {
       comparePasswords() {
@@ -86,13 +86,13 @@
     },
     watch: {
       error(value) {
-        if(value) this.alert = true;
+        if (value) this.alert = true;
       },
       alert(value) {
-        if(!value) {
+        if (!value) {
           this.$store.commit('setError', null);
         }
-      }
-    }
+      },
+    },
   };
 </script>

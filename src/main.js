@@ -11,24 +11,24 @@ Vue.use(Vuetify);
 
 Vue.config.productionTip = false;
 
+firebase.initializeApp({
+  apiKey: FIREBASE_AUTH.apiKey,
+  authDomain: FIREBASE_AUTH.authDomain,
+  databaseURL: FIREBASE_AUTH.databaseURL,
+  projectId: FIREBASE_AUTH.projectId,
+});
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
   router,
   store,
   render: h => h(App),
-  created () {
-    firebase.auth().onAuthStateChanged( (firebaseUser) => {
-      if (!!firebaseUser) {
+  created() {
+    firebase.auth().onAuthStateChanged((firebaseUser) => {
+      if (firebaseUser) {
         store.dispatch('autoSignIn', firebaseUser);
       }
     });
   },
-});
-
-firebase.initializeApp({
-  apiKey: FIREBASE_AUTH.apiKey,
-  authDomain: FIREBASE_AUTH.authDomain,
-  databaseURL: FIREBASE_AUTH.databaseURL,
-  projectId: FIREBASE_AUTH.projectId,
 });
