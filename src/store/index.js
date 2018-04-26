@@ -41,7 +41,6 @@ export const store = new Vuex.Store({
         commit('setLoading', false);
       });
     },
-
     userSignIn({ commit }, payload) {
       commit('setLoading', true);
       firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
@@ -58,5 +57,10 @@ export const store = new Vuex.Store({
         commit('setLoading', false);
       });
     },
+    autoSignIn({commit}, payload) {
+      commit('setUser', {
+        email: payload.email
+      });
+    }
   },
 });
