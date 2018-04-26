@@ -5,13 +5,19 @@
         Welcome Back! Please enter username and password.
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
-        <form>
+        <form @submit.prevent='userSignIn'>
+          <v-flex>
+            <v-alert type="error" dismissible v-model="alert">
+              {{ error }}
+            </v-alert>
+          </v-flex>
           <v-flex>
             <v-text-field
               name='email'
               id='email'
               label='email'
               type='email'
+              v-model='email'
               required>
             </v-text-field>
           </v-flex>
@@ -21,6 +27,7 @@
               id='password'
               label='password'
               type='password'
+              v-model='password'
               required>
             </v-text-field>
           </v-flex>
@@ -34,5 +41,39 @@
 </template>
 
 <script>
-  export default { };
+  export default {
+    data () {
+      return {
+        email: '',
+        password: '',
+        alert: false,
+      };
+    },
+    methods: {
+      userSignIn () {
+        this.$store.dispatch('userSignIn', {
+          email: this.email,
+          password: this.password,
+        });
+      },
+    },
+    computed: {
+      error () {
+        return this.$store.state.error;
+      },
+      loading () {
+        return this.$store.state.loading;
+      },
+    },
+    watch: {
+      error (value) {
+        if (value) this.alert = true;
+      },
+      alert (value) {
+        if (!value) {
+          this.$store.commit('setError', null);
+        }
+      },
+    },
+  };
 </script>

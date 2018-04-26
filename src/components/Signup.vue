@@ -5,12 +5,12 @@
         <h1>Sign Up page</h1>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
-        <v-alert type="error" dismissible v-model='alert'>
-          {{ error }}
-        </v-alert>
-      </v-flex>
-      <v-flex xs12 sm6 offset-sm3 mt-3>
         <form @submit.prevent="userSignUp">
+          <v-flex xs12 sm6 offset-sm3 mt-3>
+            <v-alert type="error" dismissible v-model='alert'>
+              {{ error }}
+            </v-alert>
+          </v-flex>
           <v-flex>
             <v-text-field
               name='email'
