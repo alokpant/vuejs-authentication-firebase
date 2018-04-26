@@ -29,7 +29,7 @@
               name='confirmPassword'
               id='confirmPassword'
               label='confirmPassword'
-              type='confirmPassword'
+              type='password'
               required>
             </v-text-field>
           </v-flex>
