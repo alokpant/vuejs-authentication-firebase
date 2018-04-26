@@ -26,6 +26,11 @@ const routeOptions = [
     name: 'SignUp',
     component: 'Signup',
   },
+  {
+    path: '*',
+    name: '404',
+    component: '404'
+  }
 ];
 
 const routes = routeOptions.map((route) => {
