@@ -13,21 +13,22 @@ export const store = new Vuex.Store({
     loading: false,
   },
   mutations: {
-    setState(state, payload) {
+    setState (state, payload) {
       state.user = payload;
     },
-    setError(state, payload) {
+    setError (state, payload) {
       state.error = payload;
     },
-    setLoading(state, payload) {
+    setLoading (state, payload) {
       state.loading = payload;
     },
   },
   getters: {},
   actions: {
-    userSignUp({store}, payload) {
+    userSignUp ({ commit }, payload) {
+      debugger
       commit('setLoading', true);
-      firebase.auth().createWithEmailAndPassword(payload.email, payload.password)
+      firebase.auth().createUserWithEmailAndPassword(payload.email, payload.password)
       .then( (firebaseUser) => {
         commit('setUser', {
           email: firebaseUser.email
@@ -36,7 +37,7 @@ export const store = new Vuex.Store({
         commit('setLoading', false);
         router.push('/home');
       })
-      .catch( (error) => {
+      .catch((error) => {
         commit('setError', error.message)
         commit('setLoading', false);
       });

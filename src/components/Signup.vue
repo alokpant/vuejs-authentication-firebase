@@ -5,12 +5,12 @@
         <h1>Sign Up page</h1>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
-        <v-alert type="error" dismissible v-model="alert">
+        <v-alert type="error" dismissible v-model='alert'>
           {{ error }}
         </v-alert>
       </v-flex>
       <v-flex xs12 sm6 offset-sm3 mt-3>
-        <form @submit.prevent='UserSignUp'>
+        <form @submit.prevent="userSignUp">
           <v-flex>
             <v-text-field
               name='email'
@@ -61,12 +61,12 @@
         password: '',
         passwordConfirm: '',
         alert: false,
+        formValid: false
       }
     },
     methods: {
       userSignUp() {
-        if (!!this.comparePasswords) return;
-
+        if (!this.comparePasswords) return;
         this.$store.dispatch('userSignUp', {
           'email': this.email,
           'password': this.password,
