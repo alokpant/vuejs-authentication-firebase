@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import firebase from 'firebase';
 
 const routeOptions = [
   {
@@ -11,6 +12,9 @@ const routeOptions = [
     path: '/home',
     name: 'Home',
     component: 'Home',
+    meta: {
+      requiresAuth: true,
+    },
   },
   {
     path: '/sign-in',
@@ -33,7 +37,20 @@ const routes = routeOptions.map((route) => {
 
 Vue.use(VueRouter);
 
-export default new VueRouter({
+const router = new VueRouter({
   mode: 'history',
   routes,
 });
+
+router.beforeEach((to, from, next) => {
+  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
+  const isAuthenticated = firebase.auth().currentUser;
+  if (requiresAuth && !isAuthenticated) {
+    next('/sign-in');
+  } else {
+    next();
+  }
+
+});
+
+export default router;
