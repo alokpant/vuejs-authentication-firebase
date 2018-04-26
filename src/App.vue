@@ -45,17 +45,21 @@
 
 <script>
 export default {
+  name: 'App',
   data() {
     return {
       sidebar: false,
-      appTitle: 'Authentication with Firebase',
       menuItems: [
-        { title: 'Home', path: '/home', icon: 'home'},
-        { title: 'Sign Up', path: '/sign-up', icon: 'face'},
-        { title: 'Sign In', path: '/sign-in', icon: 'lock_open'}
-      ]
-    }
+        { title: 'Home', path: '/home', icon: 'home' },
+        { title: 'Sign Up', path: '/sign-up', icon: 'face' },
+        { title: 'Sign In', path: '/sign-in', icon: 'lock_open' },
+      ],
+    };
   },
-  name: 'App',
+  computed: {
+    appTitle() {
+      return this.$store.state.appTitle;
+    },
+  },
 };
 </script>

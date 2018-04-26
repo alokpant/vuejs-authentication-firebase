@@ -4,8 +4,10 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 export const vuex = new Vuex.Store({
-  state: {},
+  state: {
+    appTitle: 'Authentication with Firebase',
+  },
   mutations: {},
   getters: {},
-  actions: {}
+  actions: {},
 });
