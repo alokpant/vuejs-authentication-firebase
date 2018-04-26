@@ -19,6 +19,8 @@ new Vue({
   render: h => h(App),
 });
 
+console.log(FIREBASE_AUTH)
+
 firebase.initializeApp({
   apiKey: FIREBASE_AUTH.apiKey,
   authDomain: FIREBASE_AUTH.authDomain,

@@ -12,6 +12,7 @@
               id='email'
               label='email'
               type='email'
+              v-model='email'
               required>
             </v-text-field>
           </v-flex>
@@ -20,16 +21,19 @@
               name='password'
               id='password'
               label='password'
+              v-model='password'
               type='password'
               required>
             </v-text-field>
           </v-flex>
           <v-flex>
             <v-text-field
-              name='confirmPassword'
-              id='confirmPassword'
-              label='confirmPassword'
+              name='passwordConfirm'
+              id='passwordConfirm'
+              label='passwordConfirm'
+              v-model='passwordConfirm'
               type='password'
+              :rules="[comparePasswords]"
               required>
             </v-text-field>
           </v-flex>
@@ -43,5 +47,18 @@
 </template>
 
 <script>
-  export default { };
+  export default {
+    data() {
+      return {
+        email: '',
+        password: '',
+        passwordConfirm: '',
+      }
+    },
+    computed: {
+      comparePasswords() {
+        return this.password === this.passwordConfirm ? true : 'Passwords don\'t match';
+      }
+    }
+  };
 </script>
