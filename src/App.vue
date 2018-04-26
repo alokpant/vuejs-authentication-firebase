@@ -31,7 +31,7 @@
                :key='item.title'
                :to='item.path'>
           <v-icon left dark>{{item.icon}}</v-icon>
-          {{item.content}}
+          {{item.title}}
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -50,7 +50,7 @@ export default {
       sidebar: false,
       appTitle: 'Authentication with Firebase',
       menuItems: [
-        { title: 'Home', path: '/home', icon: 'Home'},
+        { title: 'Home', path: '/home', icon: 'home'},
         { title: 'Sign Up', path: '/sign-up', icon: 'face'},
         { title: 'Sign In', path: '/sign-in', icon: 'lock_open'}
       ]
